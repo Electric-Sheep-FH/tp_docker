@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TP Docker</title>
+</head>
+<body>
+  <h1>Mes tâches</h1>
+  <ul id="liste"></ul>
+  <p>Servi par : <span id="qui">…</span></p>
+
+  <script>
+    fetch('/api/taches').then(r => r.json()).then(taches => {
+      document.getElementById('liste').innerHTML =
+        taches.map(t => `<li>${t.faite ? '☑' : '☐'} ${t.titre}</li>`).join('');
+    });
+
+    fetch('/api/qui').then(r => r.text())
+      .then(h => document.getElementById('qui').textContent = h);
+  </script>
+</body>
+</html>

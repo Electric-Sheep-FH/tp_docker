@@ -1,0 +1,9 @@
+# Exclure bin/ et obj/ est critique : des artefacts locaux peuvent être volumineux,
+# polluer le contexte de build et écraser des sorties Linux avec des fichiers Windows.
+**/bin/
+**/obj/
+.git/
+.github/
+*.md
+.env
+tests/

@@ -1,0 +1,74 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Tests .NET
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Installer .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+          cache: true
+          cache-dependency-path: api/**/packages.lock.json
+
+      - name: Restaurer les dépendances verrouillées
+        run: dotnet restore tests/TpApi.Tests/TpApi.Tests.csproj --locked-mode
+
+      - name: Lancer les tests
+        run: dotnet test tests/TpApi.Tests/TpApi.Tests.csproj --configuration Release --no-restore
+
+  docker:
+    name: Publier l'image Docker
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Installer .NET pour lire la version
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Extraire la version du projet
+        id: version
+        working-directory: api
+        shell: bash
+        run: echo "value=$(dotnet msbuild src/TpApi/TpApi.csproj -getProperty:Version)" >> "$GITHUB_OUTPUT"
+
+      - name: Préparer Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Se connecter à Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Construire et publier
+        uses: docker/build-push-action@v6
+        with:
+          context: ./api
+          push: true
+          tags: |
+            docker.io/${{ vars.DOCKERHUB_USERNAME }}/tp-msii-api:${{ steps.version.outputs.value }}
+            docker.io/${{ vars.DOCKERHUB_USERNAME }}/tp-msii-api:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
