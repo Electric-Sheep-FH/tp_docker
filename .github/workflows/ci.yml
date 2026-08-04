@@ -68,7 +68,7 @@ jobs:
           context: ./api
           push: true
           tags: |
-            docker.io/${{ vars.DOCKERHUB_USERNAME }}/TP_Docker:${{ steps.version.outputs.value }}
-            docker.io/${{ vars.DOCKERHUB_USERNAME }}/TP_Docker:latest
+            docker.io/${{ vars.DOCKERHUB_USERNAME }}/tp_docker:${{ steps.version.outputs.value }}
+            docker.io/${{ vars.DOCKERHUB_USERNAME }}/tp_docker:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
