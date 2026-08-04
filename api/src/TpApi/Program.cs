@@ -33,7 +33,6 @@ app.MapPost("/api/taches", async (NouvelleTache nouvelle, NpgsqlDataSource db) =
     string titre;
     try
     {
-        qdz
         titre = TitreUtils.Normaliser(nouvelle.Titre);
     }
     catch (ArgumentException e)
