@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>TpApi</RootNamespace>
     <!-- Cette version est extraite automatiquement par la CI. -->
-    <Version>0.0.2</Version>
+    <Version>0.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
