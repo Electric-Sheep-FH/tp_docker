@@ -5,6 +5,8 @@ Technologie choisie : **C# avec ASP.NET Core sur .NET 10**.
 Ce dépôt contient une petite API de tâches, un front statique, un reverse proxy nginx et
 une base PostgreSQL.
 
+Les résultats demandés de l'exercice sont détaillés dans le fichier `RAPPORT.md`, disponible à la même racine.
+
 ## Démarrage
 
 Mon fichier `.env` local reste ignoré par Git. Pour recréer sa propre configuration, on peut alors utiliser le fichier `.env.example` fourni :
