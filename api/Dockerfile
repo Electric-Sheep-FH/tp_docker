@@ -1,4 +1,4 @@
-# Digests multi-architecture récupérés avec `docker buildx imagetools inspect`.
+# Récupérés avec `docker buildx imagetools inspect`.
 FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine@sha256:d8ee39817ca03a3757288e83c37ed73cc969a286c603b827c7cbe33add1c2d1c AS build
 
 WORKDIR /src

@@ -57,7 +57,7 @@ curl -X POST http://localhost:8080/api/taches \
   -d '{"titre":"New Tache","faite":true}'
 ```
 
-![img création tâche](img\image-2.png)
+![img création tâche](img/image-2.png)
 
 ## Tests locaux
 

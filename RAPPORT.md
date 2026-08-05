@@ -69,8 +69,8 @@ Résultat observé après `docker compose down` puis `docker compose up -d` :
 
 La tâche d'identifiant 4 était toujours présente avec les trois tâches initiales.
 
-![img de api/taches](img\image.png)
-![img de localhost:8080](img\image-1.png)
+![img de api/taches](img/image.png)
+![img de localhost:8080](img/image-1.png)
 
 ## 4. Reverse proxy, load-balancing et limitation de débit
 
@@ -110,11 +110,11 @@ et publie les tags de version et `latest`.
 
 Saisie d'une erreur dans `Program.cs` :
 
-![Img erreur program.cs](img\image-3.png)
+![Img erreur program.cs](img/image-3.png)
 
 Je push ensuite le code en erreur. Je peux alors constater sur github Actions que le job "tests.net" est en erreur, le job "Publier l'image Docker" n'a donc pas eu lieu :
 
-![img push rejetée suite erreur](img\image-4.png)
+![img push rejetée suite erreur](img/image-4.png)
 
 Il n'y a donc pas eu de push de l'image vers Docker Hub.
 
@@ -122,11 +122,11 @@ Il n'y a donc pas eu de push de l'image vers Docker Hub.
 
 Suite au push, je constate la réussite grâce à la coche verte : 
 
-![img github actions réussite](img\image-5.png)
+![img github actions réussite](img/image-5.png)
 
 Je peux alors confirmer grâce à Docker Hub, et constate bien la création d'une image en version 0.0.2 :
 
-![img docker hub](img\image-6.png)
+![img docker hub](img/image-6.png)
 
 
 URL de l'image Docker Hub : `https://hub.docker.com/repository/docker/fabhass/tp_docker/general`
