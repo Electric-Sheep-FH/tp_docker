@@ -83,6 +83,21 @@ for i in $(seq 1 60); do curl -s -o /dev/null -w "%{http_code} " \
   http://localhost:8080/api/taches; done
 ```
 
+  (Version Powershell test api servi)
+  ```powershell
+  1..12 | ForEach-Object {
+      curl.exe -s http://localhost:8080/api/qui
+      Write-Host
+  }
+  ```
+  (Version Powershell test limite requête)
+  ```powershell
+  1..60 | ForEach-Object {
+      curl.exe -s -o NUL -w "%{http_code} " http://localhost:8080/api/taches
+  }
+  Write-Host
+  ```
+
 Les trois hostnames ont été servis successivement :
 
 ```text
